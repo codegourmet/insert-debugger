@@ -13,8 +13,8 @@ I recommend [Vundle](https://github.com/VundleVim/Vundle.vim)
 
 Setup the method via your preferred keybinding inside `.vimrc`:
 
-    nmap <Leader>p !silent :call InsertDebugger()<CR>
-    let g:insert_debugger_language = 'ruby'
+    nmap <Leader>i :InsertDebugger<CR>
+    vmap <Leader>i :InsertDebuggerBlock<CR>
 
 ## Settings
 
