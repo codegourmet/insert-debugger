@@ -25,6 +25,11 @@ Setup the method via your preferred keybinding inside `.vimrc`:
 Default: 'ruby'
 Available: 'ruby', 'php'
 
+### Setting language dependent on filetype
+
+    autocmd FileType php let g:insert_debugger_language = 'php'
+    autocmd FileType ruby let g:insert_debugger_language = 'ruby'
+
 ### Example for ruby
 
 #### Before
