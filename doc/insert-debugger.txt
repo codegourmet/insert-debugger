@@ -1,4 +1,4 @@
-ruby-yank-fqn.txt*    Yank the FQN at the cursor position's scope.
+ruby-insert-debugger.txt*    Insert a debugger statement at the current cursor position or selection.
 
 Author:  Markus Seeger <http://codegourmet.de/>
 License: MIT
