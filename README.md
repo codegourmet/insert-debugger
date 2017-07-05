@@ -81,7 +81,7 @@ cursorLine();
 try {
   previousLine();
   cursorLine();
-} catch (Exception $e) {
+} catch (\Exception $e) {
   eval(\Psy\sh());
 }
 ```

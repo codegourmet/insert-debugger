@@ -43,7 +43,7 @@ function! InsertDebuggerBlockFnPhp(start, end)
 	exe "normal Otry {\e=="
 
 	exe "normal '>"
-	exe "normal o} catch (Exception $e) {\e=="
+	exe "normal o} catch (\\Exception $e) {\e=="
 	exe "normal oeval(\\Psy\\sh());\e=="
 	exe "normal o}\e=="
 
