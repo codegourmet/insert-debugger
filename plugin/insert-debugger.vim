@@ -11,10 +11,14 @@ if ! exists("g:insert_debugger_language")
 end
 
 function! InsertDebuggerFn()
-	exe "normal Orequire 'pry'; binding.pry\e^"
+	if g:insert_debugger_language == 'ruby'
+		exe "normal Orequire 'pry'; binding.pry\e^"
+	elseif g:insert_debugger_language == 'php'
+		exe "normal Oeval(\\Psy\\sh());\e^"
+	endif
 endfunction
 
-function! InsertDebuggerBlockFn(start, end)
+function! InsertDebuggerBlockFnRuby(start, end)
 	let selection_start = getpos("'<")
 	let selection_end = getpos("'>")
 
@@ -28,6 +32,30 @@ function! InsertDebuggerBlockFn(start, end)
 	exe "normal oend\e=="
 
 	exe "normal gv==\e"
+endfunction
+
+function! InsertDebuggerBlockFnPhp(start, end)
+	let selection_start = getpos("'<")
+	let selection_end = getpos("'>")
+
+	exe "normal \e"
+	exe "normal '<"
+	exe "normal Otry {\e=="
+
+	exe "normal '>"
+	exe "normal o} catch (Exception $e) {\e=="
+	exe "normal oeval(\\Psy\\sh());\e=="
+	exe "normal o}\e=="
+
+	exe "normal gv==\e"
+endfunction
+
+function! InsertDebuggerBlockFn(start, end)
+	if g:insert_debugger_language == 'ruby'
+		call InsertDebuggerBlockFnRuby(a:start, a:end)
+	elseif g:insert_debugger_language == 'php'
+		call InsertDebuggerBlockFnPhp(a:start, a:end)
+	endif
 endfunction
 
 com! -nargs=0 -range=% InsertDebugger :call InsertDebuggerFn()

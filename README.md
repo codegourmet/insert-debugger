@@ -19,11 +19,67 @@ Setup the method via your preferred keybinding inside `.vimrc`:
 ## Settings
 
 ### g:insert_debugger_language
-At the moment, only ruby is supported.
 
     let g:insert_debugger_language = 'ruby'
 
 Default: 'ruby'
+Available: 'ruby', 'php'
+
+### Example for ruby
+
+#### Before
+
+```ruby
+previous_line()
+cursor_line()
+```
+
+#### After execution without selection
+
+```ruby
+previous_line()
+require 'pry'; binding.pry
+cursor_line()
+```
+
+#### After execution with visual selection
+
+```ruby
+begin
+  previous_line()
+  cursor_line()
+rescue
+  require 'pry'; binding.pry
+end
+```
+
+### Example for php
+
+#### Before
+
+```php
+previousLine();
+cursorLine();
+```
+
+#### After execution without selection
+
+```php
+previousLine();
+eval(\Psy\sh());
+cursorLine();
+```
+
+#### After execution with visual selection
+
+```php
+try {
+  previousLine();
+  cursorLine();
+} catch (Exception $e) {
+  eval(\Psy\sh());
+}
+```
 
 ## Contributing
 If you think anything's missing or buggy please drop me a line or a pull request.
